@@ -1,0 +1,6 @@
+Command exited with non-zero status 1
+{"vcs1":{"timestamp_begin":1746017496.572140438, "rt":0.09, "ut":0.01, "st":0.05}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1746017496.333513011}
+{"VCS_COMP_START_TIME": 1746017496.333513011}
+{"VCS_COMP_END_TIME": 1746017496.732225689}
+{"VCS_USER_OPTIONS": "-full64 -f new_need_verification/testbench/filelist.f -o /home/Shahd_Abdulmohsan/core/riscv-dv/new_need_verification/testbench/simv"}

@@ -1,0 +1,7 @@
+Command exited with non-zero status 255
+{"vcs1":{"timestamp_begin":1746022865.160433741, "rt":0.25, "ut":0.17, "st":0.06}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1746022864.879134389}
+{"VCS_COMP_START_TIME": 1746022864.879134389}
+{"VCS_COMP_END_TIME": 1746022865.482437613}
+{"VCS_USER_OPTIONS": "-full32 -f /home/Shahd_Abdulmohsan/core/riscv-dv/filelist.f -o /home/Shahd_Abdulmohsan/core/riscv-dv/new_need_verification/modules/rtl_team/rv32imf/soc/simv"}
+{"vcs1": {"peak_mem": 253224}}

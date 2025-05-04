@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1746086814.174576118, "rt":109.54, "ut":107.90, "st":1.26}}
+{"vcselab":{"timestamp_begin":1746086923.801620847, "rt":0.29, "ut":0.18, "st":0.11}}
+{"link":{"timestamp_begin":1746086924.156740786, "rt":0.52, "ut":0.12, "st":0.30}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1746086813.927772443}
+{"VCS_COMP_START_TIME": 1746086813.927772443}
+{"VCS_COMP_END_TIME": 1746086924.749600826}
+{"VCS_USER_OPTIONS": "-full64 -f /home/Shahd_Abdulmohsan/core/riscv-dv/filelist.f -o /home/Shahd_Abdulmohsan/core/riscv-dv/new_need_verification/modules/rtl_team/rv32imf/soc/simv"}
+{"vcs1": {"peak_mem": 1686856}}
+{"vcselab": {"peak_mem": 174932}}

@@ -1,0 +1,19 @@
+spike : /home/Shahd_Abdulmohsan/core/riscv-dv/out_2025-05-04/spike.csv
+core : /home/Shahd_Abdulmohsan/core/riscv-dv/out_2025-05-04/core.csv
+Mismatch[1]:
+spike[70] : pc[8000016c] lh      t6, -1175(sp): t6:00000000 mem:800401b2
+core[70] : pc[8000015c] lb	x28,-1119(x2): t3:003d8491 
+Mismatch[2]:
+spike[73] : pc[80000170] lhu     s10, 349(sp): s10:00000000 mem:800407a6
+core[73] : pc[8000016c] lh	x31,-1175(x2): t6:00000000 
+Mismatch[3]:
+spike[74] : pc[80000174] slt     s7, t3, s5: s7:00000001 
+core[74] : pc[80000170] lhu	x26,349(x2): s10:00000000 
+Mismatch[4]:
+spike[75] : pc[80000178] and     ra, t5, a5: ra:64c00400 
+core[75] : pc[80000174] slt	x23,x28,x21: s7:00000001 
+Mismatch[5]:
+spike[76] : pc[80000180] ori     s1, s0, 147: s1:af1f71d3 
+core[76] : pc[80000178] and	x1,x30,x15: ra:64c00400 
+[FAILED]: 67 matched, 522 mismatch
+
