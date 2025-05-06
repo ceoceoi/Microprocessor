@@ -108,13 +108,13 @@ new_need_verification/modules/tracer_modules/Tracer/tracer.sv
 new_need_verification/testbench/tracer_rv32i_soc_tb.sv
 130
 which_declare=declare -f
-XDG_SESSION_ID=884
+XDG_SESSION_ID=968
 XDG_RUNTIME_DIR=/run/user/1049
 XDG_DATA_DIRS=/home/Shahd_Abdulmohsan/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
 XA_HOME=/mnt/NVME2/synopsys/xa/W-2024.09-SP1
 VUI_HOME=/mnt/NVME2/synopsys/vui/W-2024.09-SP2
 VTRAN_HOME=/mnt/NVME2/synopsys/vtran/W-2024.09-SP2
-VSCODE_IPC_HOOK_CLI=/run/user/1049/vscode-ipc-7bf58422-7eef-4b76-99d0-40a11eb66102.sock
+VSCODE_IPC_HOOK_CLI=/run/user/1049/vscode-ipc-0fb6ce43-ed09-414f-8cb8-4df2eea09b43.sock
 VSCODE_GIT_IPC_HANDLE=/run/user/1049/vscode-git-38e38774bd.sock
 VSCODE_GIT_ASKPASS_NODE=/home/Shahd_Abdulmohsan/.vscode-server/cli/servers/Stable-33fc5a94a3f99ebe7087e8fe79fbe1d37a251016/server/node
 VSCODE_GIT_ASKPASS_MAIN=/home/Shahd_Abdulmohsan/.vscode-server/cli/servers/Stable-33fc5a94a3f99ebe7087e8fe79fbe1d37a251016/server/extensions/git/dist/askpass-main.js
@@ -149,8 +149,8 @@ SYN_HOME=/mnt/NVME2/synopsys/syn
 STARRC_HOME=/mnt/NVME2/synopsys/starrc
 SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
 SSL_CERT_DIR=/etc/pki/tls/certs
-SSH_CONNECTION=192.168.1.20 33492 192.168.1.8 22
-SSH_CLIENT=192.168.1.20 33492 22
+SSH_CONNECTION=192.168.1.20 51204 192.168.1.8 22
+SSH_CLIENT=192.168.1.20 51204 22
 SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
 SPYGLASS_HOME=/mnt/NVME2/synopsys/spyglass/W-2024.09-SP1/SPYGLASS_HOME
 SPIKE_PATH=/usr/bin
@@ -195,8 +195,8 @@ MODULEPATH_modshare=/usr/share/Modules/modulefiles:2:/etc/modulefiles:2:/usr/sha
 MODULEPATH=/etc/scl/modulefiles:/etc/scl/modulefiles:/etc/scl/modulefiles:/usr/share/Modules/modulefiles:/etc/modulefiles:/usr/share/modulefiles
 MFLAGS=
 MECHANICAL_ENGINE_ANALYSIS_FUSION_HOME=/mnt/NVME2/synopsys/mechanical_engine_analysis_fusion
-MAKE_TERMOUT=/dev/pts/112
-MAKE_TERMERR=/dev/pts/112
+MAKE_TERMOUT=/dev/pts/141
+MAKE_TERMERR=/dev/pts/141
 MAKELEVEL=1
 MAKEFLAGS=
 LOADEDMODULES=
@@ -263,7 +263,7 @@ ALE_HOME=/mnt/NVME2/synopsys/ale
 1746016760 new_need_verification/modules/rtl_team/rv32imf/soc/uncore/uart/raminfr.v
 1746016761 new_need_verification/modules/rtl_team/rv32imf/soc/core/green_team/raw_waw_units/value_capture.sv
 1746016761 new_need_verification/modules/rtl_team/rv32imf/soc/core/green_team/raw_waw_units/n_bit_delayer.sv
-1746016761 new_need_verification/modules/rtl_team/rv32imf/soc/core/green_team/raw_waw_units/clear_units_decoder.sv
+1746442511 new_need_verification/modules/rtl_team/rv32imf/soc/core/green_team/raw_waw_units/clear_units_decoder.sv
 1746016761 new_need_verification/modules/rtl_team/rv32imf/soc/core/green_team/raw_waw_units/busy_registers.sv
 1746016761 new_need_verification/modules/rtl_team/rv32imf/soc/core/green_team/raw_waw_units/FP_busy_registers.sv
 1746016761 new_need_verification/modules/rtl_team/rv32imf/soc/core/green_team/fpu_units/fcvt/FP_converter.sv
@@ -299,7 +299,7 @@ ALE_HOME=/mnt/NVME2/synopsys/ale
 1746016760 new_need_verification/modules/rtl_team/rv32imf/soc/core/imm_gen.sv
 1746016760 new_need_verification/modules/rtl_team/rv32imf/soc/core/hazard_controller.sv
 1746016760 new_need_verification/modules/rtl_team/rv32imf/soc/core/forwarding_unit.sv
-1746101396 new_need_verification/modules/rtl_team/rv32imf/soc/core/data_path.sv
+1746444296 new_need_verification/modules/rtl_team/rv32imf/soc/core/data_path.sv
 1746086082 new_need_verification/modules/rtl_team/rv32imf/soc/core/data_mem.sv
 1746016760 new_need_verification/modules/rtl_team/rv32imf/soc/core/control_unit.sv
 1746016760 new_need_verification/modules/rtl_team/rv32imf/soc/core/branch_controller.sv
@@ -314,5 +314,5 @@ ALE_HOME=/mnt/NVME2/synopsys/ale
 1733286010 /mnt/NVME2/synopsys/vcs/W-2024.09-SP1/linux64/lib/liberrorinf.so
 1733286000 /mnt/NVME2/synopsys/vcs/W-2024.09-SP1/linux64/lib/libsnpsmalloc.so
 1733285992 /mnt/NVME2/synopsys/vcs/W-2024.09-SP1/linux64/lib/libvfs.so
-1746369914 /home/Shahd_Abdulmohsan/core/riscv-dv/new_need_verification/modules/rtl_team/rv32imf/soc/simv.daidir
+1746447472 /home/Shahd_Abdulmohsan/core/riscv-dv/new_need_verification/modules/rtl_team/rv32imf/soc/simv.daidir
 -1 partitionlib

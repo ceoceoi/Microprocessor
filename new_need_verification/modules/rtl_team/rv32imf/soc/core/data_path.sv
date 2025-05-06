@@ -491,6 +491,7 @@ module data_path #(
     );
     
     logic pipe_or_multi_p_last;  // indicates that "p_signal_last", came to the p_mux, belongs to a pipeline/multicycle unit
+//    assign pipe_or_multi_p_last = (|p_signal_last[5:0]);
     assign pipe_or_multi_p_last = (|p_signal_last[5:0]);
 
     // extract signals from EXE_start Bus to be used later in EXE-stage ...
@@ -607,7 +608,6 @@ module data_path #(
     logic jalr_exe;
     assign jalr_exe = ~jal_exe & jump_exe;
     logic [31:0] jump_base_pc_exe;
-
     mux2x1 #(
         .n(32)
     ) jalr_pc_mux (
@@ -616,11 +616,9 @@ module data_path #(
         .in1(rdata1_frw_exe),           // normal rdata1 (also it could be forwarded value, based on "forwarding_mux_a") 
         .out(jump_base_pc_exe)
     );
-    assign pc_jump_exe = jump_base_pc_exe + imm_exe & ~(32'd1);//
-    // NOTE: PC+4 exist in IF1 stage (before pc modulel)
-    // NOTE: PC+imm exist in EXE stage
+
     // pc adder for jumping logic (NOTE: this adder isn't a part of alu)
-    // assign pc_jump_exe = jump_base_pc_exe + imm_exe;
+    assign pc_jump_exe = jump_base_pc_exe + imm_exe & ~(32'd1);
 
     // NOTE: PC+4 exist in IF1 stage (before pc modulel)
     // NOTE: PC+imm exist in EXE stage
@@ -863,8 +861,8 @@ module data_path #(
         .clk(clk),
         .rst_n(reset_n),
 //        .clear(clear_uu_rd[num_rds-1 : 11]),
-//        .clear(clear_uu_rd[11]),
-        .clear(clear_uu_rd[4] |  branch_hazard),
+        .clear(clear_uu_rd[11]), // Updated May1
+//        .clear(clear_uu_rd[4] |  branch_hazard),
         .a_in(alu_op1_exe),        // Multiplicand
         .b_in(alu_op2_exe),        // Divisor (we calculate 1/b)
         .p_start(p_signal_start_exe[2]),            // Start pulse
