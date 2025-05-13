@@ -30,8 +30,8 @@ privileged_mode_t supported_privileged_mode[] = {MACHINE_MODE};
 riscv_instr_name_t unsupported_instr[];
 
 // ISA supported by the processor
-riscv_instr_group_t supported_isa[$] = {RV32I, RV32M }; //, RV32C, RV32F, RV32FC, RV32D, RV32DC, RV32A
-// riscv_instr_group_t supported_isa[$] = { RV32M };
+riscv_instr_group_t supported_isa[$] = {RV32I, RV32M};
+
 // Interrupt mode support
 mtvec_mode_t supported_interrupt_mode[$] = {DIRECT, VECTORED};
 
@@ -54,7 +54,7 @@ bit support_umode_trap = 0;
 // Support sfence.vma instruction
 bit support_sfence = 0;
 
-// Support unaligned load / store
+// Support unaligned load/store
 bit support_unaligned_load_store = 1'b1;
 
 // GPR setting
@@ -74,17 +74,17 @@ parameter int VLEN = 512;
 // Maximum size of a single vector element
 parameter int ELEN = 32;
 
-// Minimum size of a sub - element, which must be at most 8 - bits.
+// Minimum size of a sub-element, which must be at most 8-bits.
 parameter int SELEN = 8;
 
-// Maximum size of a single vector element(encoded in vsew format)
-parameter int VELEN = int'($ln(ELEN) /$ln(2)) - 3;
+// Maximum size of a single vector element (encoded in vsew format)
+parameter int VELEN = int'($ln(ELEN)/$ln(2)) - 3;
 
 // Maxium LMUL supported by the core
 parameter int MAX_LMUL = 8;
 
 // ----------------------------------------------------------------------------
-// Multi - harts configuration
+// Multi-harts configuration
 // ----------------------------------------------------------------------------
 
 // Number of harts
@@ -101,28 +101,28 @@ privileged_reg_t implemented_csr[] = {
 const privileged_reg_t implemented_csr[] = {
 `endif
     // Machine mode mode CSR
-    MVENDORID, // Vendor ID
-    MARCHID, // Architecture ID
-    MIMPID, // Implementation ID
-    MHARTID, // Hardware thread ID
-    MSTATUS, // Machine status
-    MISA, // ISA and extensions
-    MIE, // Machine interrupt - enable register
-    MTVEC, // Machine trap - handler base address
+    MVENDORID,  // Vendor ID
+    MARCHID,    // Architecture ID
+    MIMPID,     // Implementation ID
+    MHARTID,    // Hardware thread ID
+    MSTATUS,    // Machine status
+    MISA,       // ISA and extensions
+    MIE,        // Machine interrupt-enable register
+    MTVEC,      // Machine trap-handler base address
     MCOUNTEREN, // Machine counter enable
-    MSCRATCH, // Scratch register for machine trap handlers
-    MEPC, // Machine exception program counter
-    MCAUSE, // Machine trap cause
-    MTVAL, // Machine bad address or instruction
-    MIP // Machine interrupt pending
+    MSCRATCH,   // Scratch register for machine trap handlers
+    MEPC,       // Machine exception program counter
+    MCAUSE,     // Machine trap cause
+    MTVAL,      // Machine bad address or instruction
+    MIP         // Machine interrupt pending
 };
 
-// Implementation - specific custom CSRs
-bit[11:0] custom_csr[] = {
+// Implementation-specific custom CSRs
+bit [11:0] custom_csr[] = {
 };
 
 // ----------------------------------------------------------------------------
-// Supported interrupt / exception setting, used for functional coverage
+// Supported interrupt/exception setting, used for functional coverage
 // ----------------------------------------------------------------------------
 
 `ifdef DSIM
