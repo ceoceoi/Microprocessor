@@ -62,7 +62,7 @@ all_cus: custom_asmtest extract_hex convert_hex_files simv exec_sim compare
 # Step 1: Generate the test
 #============================
 dv_gen:
-	@echo "🚀 [1/6] Generating test via riscv-dv..."
+	@echo " [1/6] Generating test via riscv-dv..."
 	cd $(DV_DIR) && python3 run.py --test $(TEST_NAME) --simulator vcs --target $(TARGET)
 
 custom_asmtest:
@@ -74,19 +74,19 @@ custom_asmtest:
 extract_hex: $(INST_HEX) $(DATA_HEX)
 
 $(INST_HEX): $(RV_ELF)
-	@echo "📦 Extracting .text of $(RV_ELF) to $(INST_HEX)"
+	@echo " Extracting .text of $(RV_ELF) to $(INST_HEX)"
 	$(OBJCOPY) -O verilog -j .text $(RV_ELF) $(INST_HEX)
 
 
 $(DATA_HEX): $(RV_ELF)
-	@echo "📦 Extracting .data to $(DATA_HEX)"
+	@echo " Extracting .data to $(DATA_HEX)"
 	$(OBJCOPY) -O verilog -j .data $(RV_ELF) $(DATA_HEX)
 
 #============================
 # Step 3: Convert HEX
 #============================
 convert_hex_files: $(INST_HEX) $(DATA_HEX)
-	@echo "🔄 Converting HEX files..."
+	@echo " Converting HEX files..."
 	$(CONVERT_HEX) $(INST_HEX) $(INST_CONV_HEX)
 	$(CONVERT_HEX) $(DATA_HEX) $(DATA_CONV_HEX)
 
@@ -94,14 +94,14 @@ convert_hex_files: $(INST_HEX) $(DATA_HEX)
 # Step 4: Build simv
 #============================
 simv:
-	@echo "🔧 Building RTL simulation binary..."
+	@echo " Building RTL simulation binary..."
 	vcs -full64 -f $(DV_DIR)/filelist_verif.f -o $(SIM_DIR)/simv
 
 #============================
 # Step 5: Run simulation
 #============================
 exec_sim: $(INST_CONV_HEX) $(DATA_CONV_HEX) simv
-	@echo "🎥 Running simulation..."
+	@echo " Running simulation..."
 	cp $(INST_CONV_HEX) $(TB_DIR)/inst_formatted.hex
 	$(PATCH_CSR) $(TB_DIR)/inst_formatted.hex
 	cp $(DATA_CONV_HEX) $(TB_DIR)/data_formatted.hex
@@ -142,6 +142,6 @@ c:
 # Clean everything
 #============================
 clean:
-	@echo "🧹 Cleaning outputs..."
+	@echo " Cleaning outputs..."
 	rm -rf $(DV_DIR)/out_*
 	rm -f $(SIM_DIR)/trace_core_*.log
