@@ -1,0 +1,7 @@
+Command exited with non-zero status 255
+{"vcs1":{"timestamp_begin":1747048482.198791025, "rt":0.19, "ut":0.10, "st":0.06}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1747048481.961201454}
+{"VCS_COMP_START_TIME": 1747048481.961201454}
+{"VCS_COMP_END_TIME": 1747048482.448469714}
+{"VCS_USER_OPTIONS": "-full64 -f /home/Shahd_Abdulmohsan/Microprocessor/filelist.f -o /home/Shahd_Abdulmohsan/Microprocessor/RV32_SoC/modules/rtl_team/rv32imf/soc/simv"}
+{"vcs1": {"peak_mem": 294196}}

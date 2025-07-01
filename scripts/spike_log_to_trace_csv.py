@@ -1,22 +1,3 @@
-
-""" 
-Copyright 2019 Google LLC
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-Convert spike sim log to standard riscv instruction trace format
-"""
-
 import argparse
 import os
 import re
@@ -29,17 +10,13 @@ from riscv_trace_csv import *
 from lib import *
 
 RD_RE = re.compile(
-    r"(core\s+\d+:\s+)?(?P<pri>\d)\s+0x(?P<addr>[a-f0-9]+?)\s+" \
-    r"\((?P<bin>.*?)\)\s+(?P<reg>[xf]\s*\d*?)\s+0x(?P<val>[a-f0-9]+)" \
-    r"(\s+(?P<csr>\S+)\s+0x(?P<csr_val>[a-f0-9]+))?")
+    r"(core\s+\d+:\s+)?(?P<pri>\d)\s+0x(?P<addr>[a-f0-9]+?)\s+" 
+    r"\((?P<bin>.*?)\)\s+(?P<reg>[xf]\s*\d*?)\s+0x(?P<val>[a-f0-9]+)"
+    r"(?:\s+(?P<csr>c1_fflags)\s+0x(?P<csr_val>[a-f0-9]+))?")
 CORE_RE = re.compile(
     r"core\s+\d+:\s+0x(?P<addr>[a-f0-9]+?)\s+\(0x(?P<bin>.*?)\)\s+(?P<instr>.*?)$")
 ADDR_RE = re.compile(
     r"(?P<rd>[a-z0-9]+?),(?P<imm>[\-0-9]+?)\((?P<rs1>[a-z0-9]+)\)")
-ILLE_RE = re.compile(r"trap_illegal_instruction")
-
-LOGGER = logging.getLogger()
-
 
 def process_instr(trace):
     if trace.instr == "jal":
@@ -55,24 +32,19 @@ def process_instr(trace):
         trace.operand = "{},{},{}".format(
             m.group("rd"), m.group("rs1"), m.group("imm"))
 
-
 def read_spike_instr(match, full_trace):
     disasm = match.group('instr')
     disasm = disasm.replace('pc + ', '').replace('pc - ', '-')
-
     instr = RiscvInstructionTraceEntry()
     instr.pc = match.group('addr')
     instr.instr_str = disasm
     instr.binary = match.group('bin')
-
     if full_trace:
         opcode = disasm.split(' ')[0]
         operand = disasm[len(opcode):].replace(' ', '')
-        instr.instr, instr.operand =             convert_pseudo_instr(opcode, operand, instr.binary)
+        instr.instr, instr.operand = convert_pseudo_instr(opcode, operand, instr.binary)
         process_instr(instr)
-
     return instr
-
 
 def read_spike_trace(path, full_trace):
     end_trampoline_re = re.compile(r'core.*: 0x0*1010 ')
@@ -90,7 +62,6 @@ def read_spike_trace(path, full_trace):
                 instr_match = CORE_RE.match(line)
                 if not instr_match:
                     continue
-
                 instr = read_spike_instr(instr_match, full_trace)
                 if instr.instr_str == 'ecall':
                     break
@@ -112,17 +83,32 @@ def read_spike_trace(path, full_trace):
             commit_match = RD_RE.match(line)
             if commit_match:
                 groups = commit_match.groupdict()
-                instr.gpr.append(gpr_to_abi(groups["reg"].replace(' ', '')) +
-                                 ":" + groups["val"])
-                if groups["csr"] and groups["csr_val"]:
+                reg = groups["reg"].replace(' ', '')
+                val = groups["val"]
+                abi = gpr_to_abi(reg)
+                instr.gpr.append(f"{abi}:{val}")
+
+                # Only add CSR if it's not c1_fflags
+                if groups["csr"] and groups["csr"] != "c1_fflags":
                     instr.csr.append(groups["csr"] + ":" + groups["csr_val"])
+
                 instr.mode = commit_match.group('pri')
+                continue
+
+            # 🛠️ Fix: handle fXX or xXX register following c1_fflags
+            if 'c1_fflags' in line:
+                reg_match = re.search(r'([xf]\d+)\s+(0x[0-9a-fA-F]+)', line)
+                if reg_match:
+                    reg = reg_match.group(1)
+                    val = reg_match.group(2)
+                    abi = gpr_to_abi(reg)
+                    instr.gpr.append(f"{abi}:{val}")
+                continue
 
         if instr is not None:
             yield (instr, False)
 
-
-def process_spike_sim_log(spike_log, csv, full_trace=1):
+def process_spike_sim_log(spike_log, csv, full_trace=0):
     logging.info("Processing spike log : {}".format(spike_log))
     instrs_in = 0
     instrs_out = 0
@@ -134,11 +120,9 @@ def process_spike_sim_log(spike_log, csv, full_trace=1):
         for (entry, illegal) in read_spike_trace(spike_log, full_trace):
             instrs_in += 1
             if illegal and full_trace:
-                logging.debug("Illegal instruction: {}, opcode:{}"
-                              .format(entry.instr_str, entry.binary))
+                logging.debug("Illegal instruction: {}, opcode:{}".format(entry.instr_str, entry.binary))
             if not (full_trace or entry.gpr or entry.instr_str in ['wfi', 'ecall']):
                 continue
-
             trace_csv.write_trace_entry(entry)
             instrs_out += 1
 
@@ -146,19 +130,19 @@ def process_spike_sim_log(spike_log, csv, full_trace=1):
     logging.info("CSV saved to : {}".format(csv))
     return instrs_out
 
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--log", type=str, help="Input spike simulation log")
-    parser.add_argument("--csv", type=str, help="Output trace csv_buf file")
+    parser.add_argument("--csv", type=str, help="Output trace csv file")
+    parser.add_argument("-f", "--full_trace", dest="full_trace", action="store_true",
+                        help="Generate the full trace")
     parser.add_argument("-v", "--verbose", dest="verbose", action="store_true",
                         help="Verbose logging")
+    parser.set_defaults(full_trace=False)
     parser.set_defaults(verbose=False)
     args = parser.parse_args()
     setup_logging(args.verbose)
-    # Always use full_trace = 1
-    process_spike_sim_log(args.log, args.csv, full_trace=1)
-
+    process_spike_sim_log(args.log, args.csv, args.full_trace)
 
 if __name__ == "__main__":
     main()

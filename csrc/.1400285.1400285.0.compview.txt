@@ -1,0 +1,5 @@
+{"vcs1":{"timestamp_begin":1750162042.376319278, "rt":0.15, "ut":0.03, "st":0.09}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1750162042.133024343}
+{"VCS_COMP_START_TIME": 1750162042.133024343}
+{"VCS_COMP_END_TIME": 1750162042.572447183}
+{"VCS_USER_OPTIONS": "-full64 -f /home/Shahd_Abdulmohsan/Microprocessor/filelist_verif.f -o /home/Shahd_Abdulmohsan/Microprocessor/RV32_SoC/modules/rtl_team/rv32imf/soc/simv"}

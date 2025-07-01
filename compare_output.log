@@ -1,4 +1,22 @@
-spike : /home/Shahd_Abdulmohsan/core/riscv-dv/out_2025-05-05/spike.csv
-core : /home/Shahd_Abdulmohsan/core/riscv-dv/out_2025-05-05/core.csv
-[PASSED]: 70 matched
-
+spike : /home/Shahd_Abdulmohsan/Microprocessor/out_2025-06-22/spike.csv
+core : /home/Shahd_Abdulmohsan/Microprocessor/out_2025-06-22/core.csv
+⚠️ Float mismatch in fmul.s  ft9, fs3, fa5 (ft9):
+    spike ft9 = -0.00002861 (0xb7f00000)
+    core ft9 = -0.00001442 (b771ffff)
+    abs_diff = 1.41859064e-05, rel_error = 0.495833, tolerance = 0.100000
+Mismatch[1]:
+spike[269] : pc[80000474] fmul.s  ft9, fs3, fa5: ft9:0xb7f00000 
+core[269] : pc[80000474] fmul.s	f29,f19,f15: ft9:b771ffff 
+Mismatch[2]:
+spike[420] : pc[800006f4] fmv.x.w s0, fs9: s0:80000c53 
+core[420] : pc[800006f4] fmv.x.w	x8,f25: s0:80000000 
+Mismatch[3]:
+spike[1657] : pc[80001b54] feq.s   s1, fa5, fs11: s1:00000000 
+core[1657] : pc[80001b54] feq.s	x9,f15,f27: s1:00000001 
+Mismatch[4]:
+spike[1681] : pc[80001bc4] fmv.x.w t6, fa5: t6:80040fe4 
+core[1681] : pc[80001bc4] fmv.x.w	x31,f15: t6:00000000 
+Mismatch[5]:
+spike[1690] : pc[80001bec] xor     a7, t6, t3: a7:98ddbfe4 
+core[1690] : pc[80001bec] xor	x17,x31,x28: a7:18d9b000 
+[FAILED]: 7676 matched, 52 mismatch

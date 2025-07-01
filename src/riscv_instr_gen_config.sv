@@ -116,8 +116,8 @@ class riscv_instr_gen_config extends uvm_object;
   //-----------------------------------------------------------------------------
 
   mem_region_t mem_region[$] = '{
-    '{name:"region_0", size_in_bytes: 4096,      xwr: 3'b111},
-    '{name:"region_1", size_in_bytes: 4096 * 16, xwr: 3'b111}
+    '{name:"region_0", size_in_bytes: 2000,      xwr: 3'b111},
+    '{name:"region_1", size_in_bytes: 2000,      xwr: 3'b111}
   };
 
   // Dedicated shared memory region for multi-harts atomic operations
@@ -126,18 +126,18 @@ class riscv_instr_gen_config extends uvm_object;
   };
 
   // Stack section word length
-  int stack_len = 5000;
+  int stack_len = 1000;
 
   //-----------------------------------------------------------------------------
   // Kernel section setting, used by supervisor mode programs
   //-----------------------------------------------------------------------------
 
   mem_region_t s_mem_region[$] = '{
-    '{name:"s_region_0", size_in_bytes: 4096, xwr: 3'b111},
-    '{name:"s_region_1", size_in_bytes: 4096, xwr: 3'b111}};
+    '{name:"s_region_0", size_in_bytes: 96, xwr: 3'b111},
+    '{name:"s_region_1", size_in_bytes: 96, xwr: 3'b111}};
 
   // Kernel Stack section word length
-  int kernel_stack_len = 4000;
+  int kernel_stack_len = 40;
 
   // Number of instructions for each kernel program
   int kernel_program_instr_cnt = 400;

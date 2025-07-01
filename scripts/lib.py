@@ -423,7 +423,7 @@ def convert_pseudo_instr(instr_name, operands, binary):
     elif instr_name == "jal":
         if not ("," in operands):
             operands = "ra,{}".format(operands)
-    elif instr_name == "jalr":
+    elif instr_name == "jalr":  
         m = BASE_RE.search(operands)
         # jalr rd, imm(rs1)
         if m:

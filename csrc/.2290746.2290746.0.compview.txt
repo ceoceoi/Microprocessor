@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1747821654.955382522, "rt":118.58, "ut":116.99, "st":1.07}}
+{"vcselab":{"timestamp_begin":1747821773.619685451, "rt":0.29, "ut":0.19, "st":0.10}}
+{"link":{"timestamp_begin":1747821773.972999057, "rt":0.38, "ut":0.11, "st":0.26}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1747821654.712646141}
+{"VCS_COMP_START_TIME": 1747821654.712646141}
+{"VCS_COMP_END_TIME": 1747821774.420053944}
+{"VCS_USER_OPTIONS": "-full64 -f /home/Shahd_Abdulmohsan/Microprocessor/filelist.f -o /home/Shahd_Abdulmohsan/Microprocessor/RV32_SoC/modules/rtl_team/rv32imf/soc/simv"}
+{"vcs1": {"peak_mem": 1723680}}
+{"vcselab": {"peak_mem": 174932}}

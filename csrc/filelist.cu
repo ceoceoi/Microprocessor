@@ -4,12 +4,20 @@ ifeq ($(LDVERSION), 0)
 endif
 
 ARCHIVE_OBJS=
-ARCHIVE_OBJS += _1842983_archive_1.so
-_1842983_archive_1.so : archive.45/_1842983_archive_1.a
+ARCHIVE_OBJS += _2213885_archive_1.so
+_2213885_archive_1.so : archive.156/_2213885_archive_1.a
 	@$(AR) -s $<
-	@$(PIC_LD) -shared  -Bsymbolic $(LD_NORELAX_FLAG)  -o .//../new_need_verification/modules/rtl_team/rv32imf/soc/simv.daidir//_1842983_archive_1.so --whole-archive $< --no-whole-archive
+	@$(PIC_LD) -shared  -Bsymbolic $(LD_NORELAX_FLAG)  -o .//../RV32_SoC/modules/rtl_team/rv32imf/soc/simv.daidir//_2213885_archive_1.so --whole-archive $< --no-whole-archive
 	@rm -f $@
-	@ln -sf .//../new_need_verification/modules/rtl_team/rv32imf/soc/simv.daidir//_1842983_archive_1.so $@
+	@ln -sf .//../RV32_SoC/modules/rtl_team/rv32imf/soc/simv.daidir//_2213885_archive_1.so $@
+
+
+ARCHIVE_OBJS += _prev_archive_1.so
+_prev_archive_1.so : archive.156/_prev_archive_1.a
+	@$(AR) -s $<
+	@$(PIC_LD) -shared  -Bsymbolic $(LD_NORELAX_FLAG)  -o .//../RV32_SoC/modules/rtl_team/rv32imf/soc/simv.daidir//_prev_archive_1.so --whole-archive $< --no-whole-archive
+	@rm -f $@
+	@ln -sf .//../RV32_SoC/modules/rtl_team/rv32imf/soc/simv.daidir//_prev_archive_1.so $@
 
 
 
